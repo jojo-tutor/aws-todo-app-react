@@ -1,43 +1,31 @@
-// Render Prop
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import {
   Formik, Form, Field, ErrorMessage,
 } from 'formik';
 import * as Yup from 'yup';
-import { Auth } from 'aws-amplify';
-import SessionContext from '../../contexts/SessionContext';
 
-const initialValues = { email: '', password: '' };
+const initialValues = { email: '', password: '', passwordConfirm: '' };
 const validationSchema = Yup.object().shape({
   email: Yup.string()
     .email('Invalid email')
     .required('Email is required'),
   password: Yup.string()
     .required('Password is required'),
+  passwordConfirm: Yup.string()
+    .oneOf([Yup.ref('password'), null], 'Passwords must match')
+    .required('Password confirm is required'),
 });
 
-const Login = (props) => {
-  const { setSession } = useContext(SessionContext);
-  const [error, setError] = useState(null);
-
-  const handleSubmit = async ({ email, password }, { setSubmitting }) => {
-    try {
-      const { signInUserSession: session } = await Auth.signIn(email, password);
-      setSession(session);
-    } catch (e) {
-      setError(e.message);
-    }
-
-    setSubmitting(false);
-  };
+const NewUser = (props) => {
+  const { error, onSubmit } = props;
 
   return (
     <div>
-      <h1>Log In Form</h1>
+      <h1>Sign Up Form</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={handleSubmit}
+        onSubmit={onSubmit}
       >
         {({ isSubmitting }) => (
           <Form>
@@ -45,6 +33,8 @@ const Login = (props) => {
             <ErrorMessage name="email" component="div" />
             <Field type="password" name="password" />
             <ErrorMessage name="password" component="div" />
+            <Field type="password" name="passwordConfirm" />
+            <ErrorMessage name="passwordConfirm" component="div" />
             <button type="submit" disabled={isSubmitting}>
               { isSubmitting ? 'Submitting...' : 'Submit' }
             </button>
@@ -56,4 +46,4 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+export default NewUser;
