@@ -1,0 +1,20 @@
+{
+    "appName": "awsTodoAppReact",
+    "roleName": "pinpointLambdaRole0ed31d8b",
+    "cloudWatchPolicyName": "cloudWatchPolicy0ed31d8b",
+    "pinpointPolicyName": "pinpointPolicy0ed31d8b",
+    "authPolicyName": "pinpoint_amplify_0ed31d8b",
+    "unauthPolicyName": "pinpoint_amplify_0ed31d8b",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

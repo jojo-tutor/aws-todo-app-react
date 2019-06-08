@@ -1,0 +1,19 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "aws-todo-app-react-dev-20190608130727-authRole",
+            "UnauthRoleArn": "arn:aws:iam::375544746108:role/aws-todo-app-react-dev-20190608130727-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::375544746108:role/aws-todo-app-react-dev-20190608130727-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "aws-todo-app-react-dev-20190608130727-deployment",
+            "UnauthRoleName": "aws-todo-app-react-dev-20190608130727-unauthRole",
+            "StackName": "aws-todo-app-react-dev-20190608130727",
+            "StackId": "arn:aws:cloudformation:us-west-2:375544746108:stack/aws-todo-app-react-dev-20190608130727/4faa6210-89ab-11e9-8f4d-061afba9e41c"
+        },
+        "categories": {
+            "auth": {
+                "awstodoappreact2cc0ad13": {}
+            }
+        }
+    }
+}
