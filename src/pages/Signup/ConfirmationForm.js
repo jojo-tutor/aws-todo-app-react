@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Formik, Form, Field, ErrorMessage,
 } from 'formik';
@@ -34,6 +35,15 @@ const Signup = (props) => {
       {error && <div>{error}</div>}
     </div>
   );
+};
+
+Signup.defaultProps = {
+  error: '',
+};
+
+Signup.propTypes = {
+  error: PropTypes.string,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default Signup;

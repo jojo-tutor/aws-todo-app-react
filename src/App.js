@@ -11,9 +11,7 @@ const App = () => {
       const currentSession = await Auth.currentSession();
       setSession(currentSession);
     } catch (e) {
-      if (e !== 'No current user') {
-        console.error(e);
-      }
+      console.error(e);
     }
   };
   const handleLogout = async () => {

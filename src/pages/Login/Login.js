@@ -16,9 +16,9 @@ const validationSchema = Yup.object().shape({
     .required('Password is required'),
 });
 
-const Login = (props) => {
+const Login = () => {
   const { setSession } = useContext(SessionContext);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState('');
 
   const handleSubmit = async ({ email, password }, { setSubmitting }) => {
     try {

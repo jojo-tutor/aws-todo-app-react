@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import {
-  BrowserRouter as Router, Route, Link, Switch,
+  Route, Switch,
 } from 'react-router-dom';
 import AuthenticatedRoute from './components/AuthenticatedRoutes';
 import UnauthenticatedRoute from './components/UnauthenticatedRoute';

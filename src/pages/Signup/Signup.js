@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types';
 import { Auth } from 'aws-amplify';
 import SessionContext from '../../contexts/SessionContext';
 import NewForm from './NewForm';
@@ -8,7 +9,7 @@ const Signup = (props) => {
   const { history } = props;
   const { setSession } = useContext(SessionContext);
   const [newUser, setNewUser] = useState(null);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState('');
 
   const resendSignUp = async ({ email, password }) => {
     try {
@@ -49,7 +50,7 @@ const Signup = (props) => {
   };
 
   const handleSubmit = (...args) => {
-    setError(null);
+    setError('');
     if (newUser) {
       confirm(...args);
     } else {
@@ -66,6 +67,10 @@ const Signup = (props) => {
       )}
     </div>
   );
+};
+
+Signup.propTypes = {
+  history: PropTypes.object.isRequired,
 };
 
 export default Signup;
