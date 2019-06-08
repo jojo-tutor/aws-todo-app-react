@@ -3,7 +3,6 @@ import Amplify, { Auth, Analytics, Storage } from 'aws-amplify';
 import {
   withAuthenticator, S3Album, S3Image, PhotoPicker,
 } from 'aws-amplify-react';
-import './App.css';
 import awsconfig from './aws-exports';
 
 Amplify.configure(awsconfig);
