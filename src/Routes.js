@@ -8,9 +8,9 @@ import UnauthenticatedRoute from './components/UnauthenticatedRoute';
 const LazyHome = lazy(() => import(/* webpackChunkName: "pages/Home" */ './pages/Home/index'));
 const LazyAbout = lazy(() => import(/* webpackChunkName: "pages/About" */ './pages/About/index'));
 const LazyContact = lazy(() => import(/* webpackChunkName: "pages/Contact" */ './pages/Contact/index'));
-const LazyNotFound = lazy(() => import(/* webpackChunkName: "pages/Contact" */ './pages/NotFound/index'));
-const LazyLogin = lazy(() => import(/* webpackChunkName: "pages/Contact" */ './pages/Login/index'));
-const LazySignup = lazy(() => import(/* webpackChunkName: "pages/Contact" */ './pages/Signup/index'));
+const LazyNotFound = lazy(() => import(/* webpackChunkName: "pages/NotFound" */ './pages/NotFound/index'));
+const LazyLogin = lazy(() => import(/* webpackChunkName: "pages/Login" */ './pages/Login/index'));
+const LazySignup = lazy(() => import(/* webpackChunkName: "pages/Signup" */ './pages/Signup/index'));
 
 const Routes = props => (
   <Suspense fallback={<div>Loading...</div>}>
