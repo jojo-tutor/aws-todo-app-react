@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import './index.css';
 import Amplify from 'aws-amplify';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import awsconfig from './aws-exports';
+
+import './styles/Normalize.scss';
+import './styles/Index.scss';
 
 Amplify.configure(awsconfig);
 

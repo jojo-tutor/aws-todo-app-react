@@ -32,7 +32,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="login">
       <h1>Log In Form</h1>
       <Formik
         initialValues={initialValues}
@@ -40,7 +40,7 @@ const Login = () => {
         onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (
-          <Form>
+          <Form className="loginForm">
             <Field type="email" name="email" />
             <ErrorMessage name="email" component="div" />
             <Field type="password" name="password" />

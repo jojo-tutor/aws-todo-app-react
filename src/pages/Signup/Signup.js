@@ -2,8 +2,8 @@ import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Auth } from 'aws-amplify';
 import SessionContext from '../../contexts/SessionContext';
-import NewForm from './NewForm';
-import ConfirmationForm from './ConfirmationForm';
+import NewForm from './components/NewForm';
+import ConfirmationForm from './components/ConfirmationForm';
 
 const Signup = (props) => {
   const { history } = props;

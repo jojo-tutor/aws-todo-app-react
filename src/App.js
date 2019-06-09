@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { Auth } from 'aws-amplify';
 import Routes from './Routes';
 import SessionContext from './contexts/SessionContext';
+import Navbar from './components/Navbar';
 
 const App = () => {
   const [session, setSession] = useState(null);
@@ -11,10 +11,13 @@ const App = () => {
       const currentSession = await Auth.currentSession();
       setSession(currentSession);
     } catch (e) {
-      console.error(e);
+      if (e !== 'No current user') {
+        console.error(e);
+      }
     }
   };
-  const handleLogout = async () => {
+  const handleLogout = async (e) => {
+    e.preventDefault();
     await Auth.signOut();
     setSession(null);
   };
@@ -32,35 +35,40 @@ const App = () => {
   return (
     <div className="App container">
       {isAuthenticated ? (
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/contact">Contact</Link>
-            </li>
-            <li>
-              <button type="button" onClick={handleLogout}>Log Out</button>
-            </li>
-          </ul>
-        </nav>
+        <Navbar
+          list={[
+            {
+              value: '/',
+              label: 'Home',
+            },
+            {
+              value: '/about',
+              label: 'About',
+            },
+            {
+              value: '/contact',
+              label: 'Contact',
+            },
+            {
+              value: 'logout',
+              render: () => <a href="#" onClick={handleLogout}>Log Out</a>,
+            },
+          ]}
+        />
       ) : (
-        <nav>
-          <ul>
-            <li>
-              <Link to="/login">Log In</Link>
-            </li>
-            <li>
-              <Link to="/signup">Sign Up</Link>
-            </li>
-          </ul>
-        </nav>
+        <Navbar
+          list={[
+            {
+              value: '/login',
+              label: 'Log In',
+            },
+            {
+              value: '/signup',
+              label: 'Sign Up',
+            },
+          ]}
+        />
       )}
-
       <SessionContext.Provider value={{ session, setSession }}>
         <Routes {...sessionProps} />
       </SessionContext.Provider>
