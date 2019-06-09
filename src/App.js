@@ -51,6 +51,7 @@ const App = () => {
             },
             {
               value: 'logout',
+              label: 'Log Out',
               render: () => <a href="#" onClick={handleLogout}>Log Out</a>, // eslint-disable-line
             },
           ]}
