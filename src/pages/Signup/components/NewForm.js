@@ -7,14 +7,9 @@ import * as Yup from 'yup';
 
 const initialValues = { email: '', password: '', passwordConfirm: '' };
 const validationSchema = Yup.object().shape({
-  email: Yup.string()
-    .email('Invalid email')
-    .required('Email is required'),
-  password: Yup.string()
-    .required('Password is required'),
-  passwordConfirm: Yup.string()
-    .oneOf([Yup.ref('password'), null], 'Passwords must match')
-    .required('Password confirm is required'),
+  email: Yup.string().email('Invalid email').required('Email is required'),
+  password: Yup.string().required('Password is required'),
+  passwordConfirm: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').required('Password confirm is required'),
 });
 
 const NewUser = (props) => {

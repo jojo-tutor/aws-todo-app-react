@@ -6,8 +6,9 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import awsconfig from './aws-exports';
 
-import './styles/Normalize.scss';
+// import './styles/Normalize.scss';
 import './styles/Index.scss';
+import './styles/ReactMd.scss';
 
 Amplify.configure(awsconfig);
 

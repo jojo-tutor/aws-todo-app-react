@@ -7,8 +7,7 @@ import * as Yup from 'yup';
 
 const initialValues = { confirmationCode: '' };
 const validationSchema = Yup.object().shape({
-  confirmationCode: Yup.string()
-    .required('Required'),
+  confirmationCode: Yup.string().required('Required'),
 });
 
 const Signup = (props) => {

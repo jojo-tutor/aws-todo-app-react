@@ -1,19 +1,22 @@
 // Render Prop
 import React, { useState, useContext } from 'react';
+import cn from 'classnames';
 import {
-  Formik, Form, Field, ErrorMessage,
+  Formik, Form,
 } from 'formik';
+import {
+  Card, CardTitle, CardText, Button, Grid, Cell,
+} from 'react-md';
 import * as Yup from 'yup';
 import { Auth } from 'aws-amplify';
 import SessionContext from '../../contexts/SessionContext';
+import TextInput from '../../components/TextInput';
+import FieldError from '../../components/FieldError';
 
 const initialValues = { email: '', password: '' };
 const validationSchema = Yup.object().shape({
-  email: Yup.string()
-    .email('Invalid email')
-    .required('Email is required'),
-  password: Yup.string()
-    .required('Password is required'),
+  email: Yup.string().email('Invalid email').required('Email is required'),
+  password: Yup.string().required('Password is required'),
 });
 
 const Login = () => {
@@ -32,27 +35,53 @@ const Login = () => {
   };
 
   return (
-    <div className="login">
-      <h1>Log In Form</h1>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-        {({ isSubmitting }) => (
-          <Form className="loginForm">
-            <Field type="email" name="email" />
-            <ErrorMessage name="email" component="div" />
-            <Field type="password" name="password" />
-            <ErrorMessage name="password" component="div" />
-            <button type="submit" disabled={isSubmitting}>
-              { isSubmitting ? 'Submitting...' : 'Submit' }
-            </button>
-          </Form>
-        )}
-      </Formik>
-      {error && <div>{error}</div>}
-    </div>
+    <Grid>
+      <Cell size={6} desktopOffset={3} tabletOffset={1} phoneOffset={0}>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ isSubmitting }) => (
+            <Form>
+              <Card>
+                <CardTitle
+                  title="Log In"
+                  subtitle="Please enter your email and password"
+                />
+                <CardText>
+                  <TextInput
+                    required
+                    type="email"
+                    name="email"
+                    label="Enter your email"
+                  />
+                  <TextInput
+                    required
+                    type="password"
+                    name="password"
+                    label="Enter your password"
+                  />
+                </CardText>
+                <CardText>
+                  <Button
+                    flat
+                    primary
+                    swapTheming
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={cn(isSubmitting && 'button-processing')}
+                  >
+                    Submit
+                  </Button>
+                </CardText>
+                <FieldError error={error} />
+              </Card>
+            </Form>
+          )}
+        </Formik>
+      </Cell>
+    </Grid>
   );
 };
 
