@@ -61,9 +61,17 @@ const Signup = (props) => {
   return (
     <div>
       {newUser ? (
-        <ConfirmationForm error={error} onSubmit={handleSubmit} />
+        <ConfirmationForm
+          error={error}
+          setNewUser={setNewUser}
+          onSubmit={handleSubmit}
+        />
       ) : (
-        <NewForm error={error} onSubmit={handleSubmit} />
+        <NewForm
+          error={error}
+          history={history}
+          onSubmit={handleSubmit}
+        />
       )}
     </div>
   );

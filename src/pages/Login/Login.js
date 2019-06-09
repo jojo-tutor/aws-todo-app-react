@@ -1,5 +1,6 @@
 // Render Prop
 import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import {
   Formik, Form,
@@ -19,7 +20,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required('Password is required'),
 });
 
-const Login = () => {
+const Login = ({ history }) => {
   const { setSession } = useContext(SessionContext);
   const [error, setError] = useState('');
 
@@ -70,9 +71,19 @@ const Login = () => {
                     swapTheming
                     type="submit"
                     disabled={isSubmitting}
-                    className={cn(isSubmitting && 'button-processing')}
+                    className={cn('md-cell md-cell--2', isSubmitting && 'button-processing')}
                   >
                     Submit
+                  </Button>
+                  <Button
+                    flat
+                    swapTheming
+                    disabled={isSubmitting}
+                    iconBefore={false}
+                    iconChildren="arrow_forward"
+                    onClick={() => history.push('/signup')}
+                  >
+                    Sign Up
                   </Button>
                 </CardText>
                 <FieldError error={error} />
@@ -83,6 +94,10 @@ const Login = () => {
       </Cell>
     </Grid>
   );
+};
+
+Login.propTypes = {
+  history: PropTypes.object.isRequired,
 };
 
 export default Login;
