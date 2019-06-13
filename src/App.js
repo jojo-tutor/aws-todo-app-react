@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Auth } from 'aws-amplify';
 import Routes from './Routes';
 import SessionContext from './contexts/SessionContext';
+import Header from './components/Header';
 import Navbar from './components/Navbar';
+
+import './styles/App.scss';
 
 const App = () => {
   const [session, setSession] = useState(null);
@@ -33,7 +36,8 @@ const App = () => {
   };
 
   return (
-    <div className="App container">
+    <div className="mainApp">
+      <Header />
       {isAuthenticated ? (
         <Navbar
           list={[
@@ -60,12 +64,28 @@ const App = () => {
         <Navbar
           list={[
             {
-              value: '/login',
-              label: 'Log In',
+              value: '/new-cars',
+              label: 'New Cars',
             },
             {
-              value: '/signup',
-              label: 'Sign Up',
+              value: '/used-cars',
+              label: 'Used Cars',
+            },
+            {
+              value: '/deals',
+              label: 'Deals',
+            },
+            {
+              value: '/insider',
+              label: 'Insider',
+            },
+            {
+              value: '/reviews',
+              label: 'Reviews',
+            },
+            {
+              value: '/recommendations',
+              label: 'Recommendations',
             },
           ]}
         />

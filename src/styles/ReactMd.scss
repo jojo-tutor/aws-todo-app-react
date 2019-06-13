@@ -1,3 +1,10 @@
 @import '~react-md/src/scss/react-md';
 
+$md-light-theme: true; // optional for light theme
+$md-primary-color: #009688;
+$md-secondary-color: #80cbc4;
+
 @include react-md-everything; // stylelint-disable-line
+
+// Or for a subsection
+@include react-md-theme-everything($md-blue-grey-500, $md-light-green-a-200, $md-light-theme, 'custom-theme'); // stylelint-disable-line
